@@ -23,7 +23,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/api/tasks")) {
+        if (request.getServletPath().startsWith("/api/tasks")) {
             String[] credentials = new String(Base64.getDecoder().decode(request.getHeader("Authorization").substring("Basic".length()).trim())).split(":");
 
             String username = credentials[0];
